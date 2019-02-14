@@ -5,23 +5,33 @@ const myArray = [];
 const container = document.querySelector("#container");
 
 function createBox() {
-  if (counter > 40) {
-    container.removeChild(container.firstChild);
-  }
+  // if (counter > 40) {
+  //   container.removeChild(container.firstChild);
+  // }
 
+  //create boxes from template
   const clone = document.querySelector("#boxtemplate").content.cloneNode(true);
   const box = clone.querySelector("#box");
 
+  //set box-height to number of customers
   const boxHeight = myArray[myArray.length - 1] + "%";
   box.style.height = boxHeight;
 
   container.appendChild(clone);
 
   counter++;
-  setTimeout(createBox, 500);
+  scrollBoxes();
 }
 
 createBox();
+
+function scrollBoxes() {
+  setTimeout(createBox, 500);
+  //remove the first one
+  if (counter > 40) {
+    document.querySelector("#box").remove();
+  }
+}
 
 function makeArray() {
   let customers = Math.floor(Math.random() * 35);
