@@ -1,30 +1,40 @@
 "use strict";
 
-function createBox() {
-  const clone = document.querySelector("#boxtemplate").content.cloneNode(true);
-
-  const box = clone.querySelector("#box");
-  box.style.height = "100px";
-
-  document.querySelector("#container").appendChild(clone);
-}
-
 let counter = 0;
+const myArray = [];
+const container = document.querySelector("#container");
 
-function createBoxes() {
-  createBox();
-  counter++;
-
-  if (counter < 10) {
-    createBoxes();
+function createBox() {
+  if (counter > 40) {
+    container.removeChild(container.firstChild);
   }
+
+  const clone = document.querySelector("#boxtemplate").content.cloneNode(true);
+  const box = clone.querySelector("#box");
+
+  const boxHeight = myArray[myArray.length - 1] + "%";
+  box.style.height = boxHeight;
+
+  container.appendChild(clone);
+
+  counter++;
+  setTimeout(createBox, 500);
 }
 
-function scrollBoxes() {
-  createBox();
+createBox();
 
-  //remove first box
-  document.querySelector("#box").remove();
+function makeArray() {
+  let customers = Math.floor(Math.random() * 35);
+  myArray.push(customers);
+
+  const MAX_LENGTH_ARR = 40;
+  if (myArray.length > MAX_LENGTH_ARR) {
+    myArray.shift();
+  }
+
+  console.log(myArray);
+
+  setTimeout(makeArray, 500);
 }
 
-//1 loop to create, 1 function to scroll, 1 function randomnmbrs
+makeArray();

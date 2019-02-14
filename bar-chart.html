@@ -7,14 +7,14 @@
     <title>Document</title>
     <style>
       #container {
-        height: 10vw;
+        height: 350px;
         border: solid 1px white;
         display: flex;
         align-items: flex-end;
       }
       #box {
-        height: 10vw;
-        width: 6vw;
+        height: 10px;
+        width: 2.5vw;
         background-color: lightpink;
         border: solid 1px black;
       }
@@ -27,41 +27,6 @@
       <div id="box"></div>
     </template>
 
-    <script>
-      function createBox() {
-        const clone = document
-          .querySelector("#boxtemplate")
-          .content.cloneNode(true);
-        const box = clone.querySelector("#box");
-        const height = getRandomNumber() + "px";
-        box.style.height = height;
-
-        const elm = document.querySelector("#container").appendChild(clone);
-      }
-
-      function getRandomNumber() {
-        const num = Math.random() * 100;
-        return num;
-      }
-
-      let counter = 0;
-
-      function createBoxes() {
-        createBox();
-        counter++;
-
-        if (counter > 10) {
-        } else {
-          createBoxes();
-        }
-      }
-      createBoxes();
-
-      function scollBoxes() {
-        createBox();
-        //remove the first one
-        document.querySelector("#box").remove();
-      }
-    </script>
+    <script src="bar-chart.js"></script>
   </body>
 </html>
